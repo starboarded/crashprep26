@@ -7,6 +7,8 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── THEME VARIABLES ── */
 :root{
   --bg:#060810;--bg2:#090c1a;--surf:#0d1122;--surf2:#101526;
   --bdr:#1a2040;--bdr2:#243060;
@@ -14,55 +16,64 @@
   --gold:#eeb020;--glt:#ffc940;--gdim:rgba(238,176,32,.10);--gglow:rgba(238,176,32,.22);
   --text:#e4eaf8;--t2:#6878a8;--t3:#303858;
   --mg:var(--gold);--ms:#98a8c0;--mb:#c07040;
-  --green:#3dffa0;
+  --stripe:rgba(26,86,255,.012);
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 60px,rgba(26,86,255,.012) 60px,rgba(26,86,255,.012) 61px);pointer-events:none;z-index:0}
+html.light{
+  --bg:#f0f2f8;--bg2:#e8ebf5;--surf:#ffffff;--surf2:#f5f7fd;
+  --bdr:#d0d5e8;--bdr2:#b0bada;
+  --blue:#1a56ff;--blt:#2563eb;--bdim:rgba(26,86,255,.08);
+  --gold:#c07800;--glt:#d48a00;--gdim:rgba(192,120,0,.08);--gglow:rgba(192,120,0,.18);
+  --text:#0f1424;--t2:#4a5578;--t3:#8890b0;
+  --mg:var(--gold);--ms:#5a6080;--mb:#8a5020;
+  --stripe:rgba(26,86,255,.018);
+}
 
-/* ── CELEBRATION BANNER ── */
-.banner{background:linear-gradient(135deg,#0a1035 0%,#0d1a28 40%,#0f1a10 100%);border-bottom:1px solid rgba(238,176,32,.3);padding:18px clamp(16px,4vw,52px);position:relative;overflow:hidden;text-align:center}
-.banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(238,176,32,.12) 0%,transparent 65%);pointer-events:none}
-.banner-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px}
-.banner-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,52px);letter-spacing:4px;background:linear-gradient(90deg,var(--glt),var(--blt),var(--glt));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
-@keyframes shimmer{to{background-position:200% center}}
-.banner-sub{font-family:'DM Mono',monospace;font-size:clamp(10px,2vw,13px);color:var(--t2);letter-spacing:3px;text-transform:uppercase}
-.next-reg{display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap;justify-content:center}
-.next-lbl{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:3px;color:var(--gold);display:flex;align-items:center;gap:8px}
-.next-lbl::before{content:'';width:20px;height:1px;background:var(--gold)}
-.next-lbl::after{content:'';width:20px;height:1px;background:var(--gold)}
-.ncd{display:flex;align-items:baseline;gap:4px}
-.ncu{display:flex;flex-direction:column;align-items:center;min-width:48px}
-.ncn{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,38px);color:var(--glt);line-height:1}
-.ncl{font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-top:2px}
-.ncs{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--bdr2);line-height:1;margin-bottom:6px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 60px,var(--stripe) 60px,var(--stripe) 61px);pointer-events:none;z-index:0}
 
 /* ── TOPBAR ── */
-.topbar{position:sticky;top:0;z-index:200;background:rgba(6,8,16,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);height:56px}
+.topbar{position:sticky;top:0;z-index:200;background:rgba(6,8,16,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);height:56px;transition:background .25s,border-color .25s}
+html.light .topbar{background:rgba(240,242,248,.94)}
 .brand{display:flex;align-items:center;gap:11px}
 .bi{width:32px;height:32px;border-radius:50%;background:linear-gradient(140deg,var(--blue),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:12px;color:#fff;flex-shrink:0;box-shadow:0 0 16px rgba(238,176,32,.12)}
 .bn{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;line-height:1;background:linear-gradient(90deg,var(--blt),var(--glt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .bs{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--t3);text-transform:uppercase}
+.topbar-right{display:flex;align-items:center;gap:16px}
 .clk{font-family:'DM Mono',monospace;font-size:12px;color:var(--t2);display:flex;align-items:center;gap:7px}
 .clk-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gglow)}
 
 /* ── HERO ── */
-.hero{position:relative;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:clamp(32px,5vw,64px) clamp(16px,4vw,52px)}
+.hero{position:relative;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:clamp(28px,4.5vw,56px) clamp(16px,4vw,52px);transition:background .25s,border-color .25s}
 .o1{position:absolute;top:-120px;right:-60px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(238,176,32,.07) 0%,rgba(26,86,255,.04) 50%,transparent 70%);pointer-events:none}
 .o2{position:absolute;bottom:-80px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(26,86,255,.05) 0%,transparent 70%);pointer-events:none}
-.hi{position:relative;z-index:1}
-.hl{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:4px;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.hl::before{content:'';width:24px;height:1px;background:var(--gold)}
-.hn{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,7.5vw,78px);line-height:.9;letter-spacing:2px;margin-bottom:18px;color:var(--text)}
+html.light .o1{background:radial-gradient(circle,rgba(192,120,0,.06) 0%,rgba(26,86,255,.03) 50%,transparent 70%)}
+html.light .o2{background:radial-gradient(circle,rgba(26,86,255,.04) 0%,transparent 70%)}
+
+/* hero: left=title+meta, right=countdown */
+.hero-inner{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.hero-left{}
+.hn{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,7.5vw,78px);line-height:.9;letter-spacing:2px;margin-bottom:14px;color:var(--text)}
 .hn .ha{color:var(--gold)}
-.hm{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+.hero-done{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4vw,40px);letter-spacing:2px;background:linear-gradient(90deg,var(--blt),var(--glt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
 .hp{font-family:'DM Mono',monospace;font-size:12px;color:var(--t2);display:flex;align-items:center;gap:7px}
 .hp::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--blt);flex-shrink:0}
-.hero-done{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,52px);letter-spacing:2px;background:linear-gradient(90deg,var(--blt),var(--glt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:4px}
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:20px}
 .hstat{display:flex;flex-direction:column;gap:3px}
-.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold);line-height:1}
 .hstat-l{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--t3)}
+
+/* countdown panel (right side of hero) */
+.next-panel{background:var(--surf);border:1px solid var(--bdr);border-radius:6px;padding:18px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0;min-width:220px;transition:background .25s,border-color .25s}
+.next-lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--gold);text-align:center}
+.ncd{display:flex;align-items:baseline;gap:3px}
+.ncu{display:flex;flex-direction:column;align-items:center;min-width:44px}
+.ncn{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3.5vw,38px);color:var(--glt);line-height:1}
+.ncl{font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-top:2px}
+.ncs{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--bdr2);line-height:1;margin-bottom:6px}
+.next-name{font-family:'DM Mono',monospace;font-size:10px;color:var(--t2);text-align:center;letter-spacing:1px}
+@media(max-width:680px){.next-panel{width:100%;min-width:0}}
 
 /* ── MAIN LAYOUT ── */
 .main{max-width:1220px;margin:0 auto;padding:clamp(24px,4vw,48px) clamp(16px,4vw,52px);display:grid;grid-template-columns:1fr 370px;gap:36px}
@@ -77,39 +88,31 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 /* ── RACE LIST ── */
 .rlist{display:flex;flex-direction:column;gap:5px}
 .ri{position:relative}
-
-/* base card */
 .rc{position:relative;overflow:hidden;background:var(--surf);border:1px solid var(--bdr);border-radius:5px;padding:14px 18px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;transition:border-color .18s,background .18s;cursor:pointer;user-select:none}
 .rc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
 .rc:hover{border-color:rgba(238,176,32,.4);background:var(--surf2)}
 .open .rc{border-color:var(--gold);background:var(--surf2);border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:var(--surf2)}
-
-/* type badges */
 .bdg{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:2px;padding:4px 9px;border-radius:3px;white-space:nowrap}
 .tf{background:var(--gdim);color:var(--gold);border:1px solid rgba(238,176,32,.2)}
 .ts{background:var(--bdim);color:var(--blt);border:1px solid rgba(26,86,255,.2)}
-
 .rci h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
 .rcw{font-family:'DM Mono',monospace;font-size:11px;color:var(--t3)}
 .rcr{display:flex;flex-direction:column;align-items:flex-end;gap:5px;min-width:60px}
 .rce{font-family:'DM Mono',monospace;font-size:11px;color:var(--t3);text-align:right}
 .rch{color:var(--t3);font-size:11px;transition:transform .28s ease,color .2s;line-height:1}
 .open .rch{transform:rotate(180deg);color:var(--gold)}
-
-/* expand panel */
 .rp{background:var(--surf2);border:1px solid var(--gold);border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;overflow:hidden;display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.4,0,.2,1)}
 .open .rp{grid-template-rows:1fr}
 .rpi{overflow:hidden}
 .rpb{padding:0 18px 16px}
-
-/* results table */
 .rth{display:grid;gap:10px;padding:10px 0 8px;border-bottom:1px solid var(--bdr);margin-bottom:2px;font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--t3)}
-.rth.wl{grid-template-columns:26px 30px 1fr 76px 76px 60px}
-.rth.nl{grid-template-columns:26px 1fr 76px 76px 60px}
+.rth.wl{grid-template-columns:26px 30px 1fr 76px 76px}
+.rth.nl{grid-template-columns:26px 1fr 76px 76px}
 .rrow{display:grid;gap:10px;padding:9px 0;border-bottom:1px solid rgba(26,32,64,.7);align-items:center;transition:background .15s}
+html.light .rrow{border-bottom-color:rgba(200,205,225,.7)}
 .rrow:last-child{border-bottom:none}
-.rrow.wl{grid-template-columns:26px 30px 1fr 76px 76px 60px}
-.rrow.nl{grid-template-columns:26px 1fr 76px 76px 60px}
+.rrow.wl{grid-template-columns:26px 30px 1fr 76px 76px}
+.rrow.nl{grid-template-columns:26px 1fr 76px 76px}
 .rrow:hover{background:rgba(238,176,32,.03);margin:0 -18px;padding-left:18px;padding-right:18px}
 .rpos{font-family:'Bebas Neue',sans-serif;font-size:18px;line-height:1;text-align:center}
 .p1{color:var(--mg);text-shadow:0 0 12px rgba(238,176,32,.4)}.p2{color:var(--ms)}.p3{color:var(--mb)}.pn{color:var(--t3);font-family:'DM Mono',monospace;font-size:12px}
@@ -117,21 +120,21 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .ran{font-size:13px;font-weight:700;color:var(--text)}
 .ras{font-family:'DM Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:1px}
 .rtm{font-family:'Bebas Neue',sans-serif;font-size:16px;text-align:right;letter-spacing:1px;color:var(--text)}
-.rrow:first-child .rtm,.winner-time{color:var(--gold)}
+.winner-time{color:var(--gold)}
 .rsp{font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);text-align:right}
-.rrt{font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);text-align:right}
+
 .rem{padding:20px 0;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--t3)}
 
-/* ── GRAND FINAL highlight ── */
-.grand .rc{border-width:1px;border-color:rgba(238,176,32,.5);background:linear-gradient(135deg,rgba(238,176,32,.05),var(--surf))}
+/* grand final highlight */
+.grand .rc{border-color:rgba(238,176,32,.5);background:linear-gradient(135deg,rgba(238,176,32,.05),var(--surf))}
 .grand .rc::before{background:linear-gradient(180deg,var(--glt),var(--gold))}
 .grand .rc:hover{border-color:var(--gold)}
 .grand.open .rc{border-bottom-color:rgba(238,176,32,.08)}
 .grand .rp{border-color:var(--gold)}
 
 /* ── LEADERBOARD ── */
-.ltabs{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
-.ltb{flex:1;min-width:68px;padding:8px 4px;background:transparent;border:1px solid var(--bdr);border-radius:3px;color:var(--t3);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .15s;text-align:center}
+.ltabs{display:flex;gap:4px;margin-bottom:14px}
+.ltb{flex:1;padding:8px 4px;background:transparent;border:1px solid var(--bdr);border-radius:3px;color:var(--t3);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .15s;text-align:center}
 .ltb:hover{border-color:var(--bdr2);color:var(--t2)}
 .ltb.active{background:var(--gdim);border-color:rgba(238,176,32,.35);color:var(--gold)}
 .lb{display:flex;flex-direction:column;gap:5px}
@@ -149,25 +152,47 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 /* ── MISC ── */
 .empty{text-align:center;padding:36px 20px;font-family:'DM Mono',monospace;font-size:11px;color:var(--t3)}
 .hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:12px}
-.sec-gap{margin-top:40px}
-footer{border-top:1px solid var(--bdr);padding:22px clamp(16px,4vw,52px);text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase}
+footer{border-top:1px solid var(--bdr);padding:22px clamp(16px,4vw,52px);text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;transition:border-color .25s}
 .fi{animation:fi .35s ease both}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* group labels within completed list */
 .grp-lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t3);margin:20px 0 8px 2px;padding-bottom:6px;border-bottom:1px solid var(--bdr)}
 .grp-lbl:first-child{margin-top:0}
+
+/* ── LIGHT MODE TOGGLE ── */
+.theme-toggle{position:fixed;bottom:24px;right:24px;z-index:500;width:44px;height:44px;border-radius:50%;background:var(--surf);border:1px solid var(--bdr);box-shadow:0 4px 20px rgba(0,0,0,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .2s;color:var(--text)}
+.theme-toggle:hover{border-color:var(--gold);box-shadow:0 4px 24px rgba(238,176,32,.2);transform:scale(1.08)}
+html.light .theme-toggle{box-shadow:0 4px 20px rgba(0,0,0,.12)}
 </style>
 </head>
 <body>
 
-<!-- CELEBRATION BANNER -->
-<div class="banner">
-  <div class="banner-inner">
-    <div class="banner-title">🏆 Good Work Everyone!</div>
-    <div class="banner-sub">Crash Prep 2026 · All Events Complete</div>
-    <div class="next-reg">
-      <div class="next-lbl">Next Regatta — March 7</div>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="brand">
+    <div><div class="bn">CRASH PREP</div><div class="bs">2026 · Final Results</div></div>
+  </div>
+  <div class="topbar-right">
+    <span id="clk">--:--:-- --</span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="o1"></div><div class="o2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hn">Crash Prep<br><span class="ha">2026</span></div>
+      <div class="hero-done">All Events Complete</div>
+      <div class="hm">
+        <div class="hp">Feb 25–26, 2026</div>
+        <div class="hp">16 Events</div>
+        <div class="hp">49 Athletes</div>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+    <div class="next-panel">
+      <div class="next-lbl">Next Regatta</div>
+      <div class="next-name">March 7, 2026</div>
       <div class="ncd" id="ncd">
         <div class="ncu"><div class="ncn" id="ncd-d">--</div><div class="ncl">days</div></div>
         <div class="ncs">:</div>
@@ -181,46 +206,18 @@ footer{border-top:1px solid var(--bdr);padding:22px clamp(16px,4vw,52px);text-al
   </div>
 </div>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="brand">
-    <div class="bi">CP</div>
-    <div><div class="bn">CRASH PREP</div><div class="bs">2026 · Final Results</div></div>
-  </div>
-  <div class="clk"><div class="clk-dot"></div><span id="clk">--:--:-- --</span></div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="o1"></div><div class="o2"></div>
-  <div class="hi">
-    <div class="hl">Season Recap</div>
-    <div class="hn">Crash Prep<br><span class="ha">2026</span></div>
-    <div class="hero-done">All Events Complete</div>
-    <div class="hm">
-      <div class="hp">Feb 25–26, 2026</div>
-      <div class="hp">16 Events</div>
-      <div class="hp">49 Athletes</div>
-      <div class="hp">4 Grand Finals</div>
-    </div>
-    <div class="hero-stats" id="hero-stats"></div>
-  </div>
-</div>
-
 <!-- MAIN -->
 <div class="main">
   <div>
-    <div class="sh"><h2>All Results</h2><span class="shct" id="evCt">16</span><div class="shl"></div></div>
+    <div class="sh"><h2>All Results</h2><span class="shct">16</span><div class="shl"></div></div>
     <div class="hint">&#9660; Click any event to expand results</div>
     <div class="rlist" id="evList"></div>
   </div>
   <div>
     <div class="sh"><h2>Best Times</h2><div class="shl"></div></div>
     <div class="ltabs">
-      <button class="ltb active" onclick="setG('vboys')"  id="t-vboys">V. Boys</button>
-      <button class="ltb"        onclick="setG('nboys')"  id="t-nboys">N. Boys</button>
-      <button class="ltb"        onclick="setG('vgirls')" id="t-vgirls">V. Girls</button>
-      <button class="ltb"        onclick="setG('ngirls')" id="t-ngirls">N. Girls</button>
+      <button class="ltb active" onclick="setG('boys')"  id="t-boys">Boys</button>
+      <button class="ltb"        onclick="setG('girls')" id="t-girls">Girls</button>
     </div>
     <div class="lb" id="lb"></div>
   </div>
@@ -228,23 +225,38 @@ footer{border-top:1px solid var(--bdr);padding:22px clamp(16px,4vw,52px);text-al
 
 <footer>Crash Prep 2026 &nbsp;&middot;&nbsp; Final Results &nbsp;&middot;&nbsp; Generated Feb 2026</footer>
 
+<!-- LIGHT MODE TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle light/dark mode">🌙</button>
+
 <script>
-const D = {"athletes": [{"name": "Bode", "squad": "N. Boys", "heatTime": "7:17.0", "semiTime": null, "finalTime": "7:18.5", "bestTime": "7:17.0", "avgSplit": "1:49.2", "split1": "1:44.3", "split2": "1:50.2", "split3": "1:52.3", "split4": "1:50.3", "avgRate": "33"}, {"name": "Edison", "squad": "N. Boys", "heatTime": "7:40.0", "semiTime": "7:52.7", "finalTime": null, "bestTime": "7:40.0", "avgSplit": "1:55.0", "split1": "1:54.8", "split2": "1:56.4", "split3": "1:55.4", "split4": "1:53.3", "avgRate": "31"}, {"name": "Gaius", "squad": "N. Boys", "heatTime": "7:21.4", "semiTime": null, "finalTime": "7:24.8", "bestTime": "7:21.4", "avgSplit": "1:50.3", "split1": "1:49.7", "split2": "1:51.2", "split3": "1:51.4", "split4": "1:49.2", "avgRate": "31"}, {"name": "Jason", "squad": "N. Boys", "heatTime": "7:39.9", "semiTime": "7:51.1", "finalTime": "7:48.1", "bestTime": "7:39.9", "avgSplit": "1:54.10", "split1": "1:54.4", "split2": "1:54.8", "split3": "1:55.7", "split4": "1:55.1", "avgRate": "30"}, {"name": "Nicolas", "squad": "N. Boys", "heatTime": "7:49.6", "semiTime": "7:49.5", "finalTime": "7:53.0", "bestTime": "7:49.5", "avgSplit": "1:57.4", "split1": "1:50.4", "split2": "1:57.1", "split3": "2:02.6", "split4": "1:59.6", "avgRate": "29"}, {"name": "Sam", "squad": "N. Boys", "heatTime": "8:00.3", "semiTime": null, "finalTime": null, "bestTime": "8:00.3", "avgSplit": "2:00.1", "split1": "1:59.0", "split2": "2:00.6", "split3": "2:02.0", "split4": "1:58.7", "avgRate": "30"}, {"name": "Teddy", "squad": "N. Boys", "heatTime": "7:23.4", "semiTime": "7:09.5", "finalTime": "7:33.9", "bestTime": "7:09.5", "avgSplit": "1:47.4", "split1": "1:49.0", "split2": "1:52.4", "split3": "1:54.0", "split4": "1:48.0", "avgRate": "32"}, {"name": "Alex M", "squad": "V. Boys", "heatTime": "6:39.9", "semiTime": "6:51.0", "finalTime": "6:45.3", "bestTime": "6:39.9", "avgSplit": "1:39.10", "split1": "1:38.6", "split2": "1:41.0", "split3": "1:40.5", "split4": "1:38.7", "avgRate": "30"}, {"name": "Alexander", "squad": "V. Boys", "heatTime": "6:48.9", "semiTime": "7:05.0", "finalTime": "6:46.5", "bestTime": "6:46.5", "avgSplit": "1:41.6", "split1": "1:39.0", "split2": "1:42.1", "split3": "1:43.7", "split4": "1:43.7", "avgRate": "33"}, {"name": "Andrew A", "squad": "V. Boys", "heatTime": "6:58.3", "semiTime": "7:05.6", "finalTime": "7:08.2", "bestTime": "6:58.3", "avgSplit": "1:44.6", "split1": "1:44.8", "split2": "1:44.9", "split3": "1:46.2", "split4": "1:42.0", "avgRate": "30"}, {"name": "Atticus", "squad": "V. Boys", "heatTime": "6:58.4", "semiTime": null, "finalTime": "7:03.2", "bestTime": "6:58.4", "avgSplit": "1:44.6", "split1": "1:43.2", "split2": "1:44.8", "split3": "1:45.2", "split4": "1:44.8", "avgRate": "31"}, {"name": "Calum", "squad": "V. Boys", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null, "avgRate": null}, {"name": "Carter Y", "squad": "V. Boys", "heatTime": "6:26.9", "semiTime": "6:42.0", "finalTime": null, "bestTime": "6:26.9", "avgSplit": "1:36.7", "split1": "1:36.0", "split2": "1:38.5", "split3": "1:37.4", "split4": "1:35.1", "avgRate": "36"}, {"name": "Edward", "squad": "V. Boys", "heatTime": "6:35.9", "semiTime": "6:44.0", "finalTime": "6:37.9", "bestTime": "6:35.9", "avgSplit": "1:38.10", "split1": "1:37.5", "split2": "1:39.2", "split3": "1:41.2", "split4": "1:38.0", "avgRate": "30"}, {"name": "Elliott", "squad": "V. Boys", "heatTime": "6:49.8", "semiTime": "7:58.0", "finalTime": "6:58.7", "bestTime": "6:49.8", "avgSplit": "1:42.5", "split1": "1:41.7", "split2": "1:42.3", "split3": "1:42.4", "split4": "1:42.7", "avgRate": "31"}, {"name": "Emmett", "squad": "V. Boys", "heatTime": "7:06.6", "semiTime": "7:08.5", "finalTime": "7:04.0", "bestTime": "7:04.0", "avgSplit": "1:46.0", "split1": "1:43.0", "split2": "1:44.5", "split3": "1:45.0", "split4": "1:49.2", "avgRate": "30"}, {"name": "Gus", "squad": "V. Boys", "heatTime": "6:55.6", "semiTime": "7:18.0", "finalTime": "6:58.1", "bestTime": "6:55.6", "avgSplit": "1:43.9", "split1": "1:42.0", "split2": "1:45.3", "split3": "1:45.3", "split4": "1:43.0", "avgRate": "33"}, {"name": "Jack", "squad": "V. Boys", "heatTime": "6:55.0", "semiTime": "6:42.0", "finalTime": null, "bestTime": "6:42.0", "avgSplit": "1:40.5", "split1": "1:39.7", "split2": "1:44.8", "split3": "1:44.7", "split4": "1:44.7", "avgRate": "29"}, {"name": "Joe", "squad": "V. Boys", "heatTime": "6:20.0", "semiTime": "6:39.0", "finalTime": null, "bestTime": "6:20.0", "avgSplit": "1:35.0", "split1": "1:35.0", "split2": "1:35.8", "split3": "1:35.4", "split4": "1:33.7", "avgRate": "35"}, {"name": "Josh", "squad": "V. Boys", "heatTime": "6:54.2", "semiTime": "7:09.0", "finalTime": "6:47.5", "bestTime": "6:47.5", "avgSplit": "1:41.9", "split1": "1:45.0", "split2": "1:46.2", "split3": "1:43.8", "split4": "1:37.2", "avgRate": "31"}, {"name": "JTH", "squad": "V. Boys", "heatTime": "6:45.8", "semiTime": "6:36.8", "finalTime": null, "bestTime": "6:36.8", "avgSplit": "1:39.2", "split1": "1:40.3", "split2": "1:41.1", "split3": "1:42.0", "split4": "1:42.6", "avgRate": "29"}, {"name": "Max", "squad": "V. Boys", "heatTime": "7:09.8", "semiTime": null, "finalTime": "7:20.3", "bestTime": "7:09.8", "avgSplit": "1:47.5", "split1": "1:47.1", "split2": "1:48.9", "split3": "1:48.3", "split4": "1:45.5", "avgRate": "35"}, {"name": "Paul", "squad": "V. Boys", "heatTime": "6:38.0", "semiTime": "6:46.3", "finalTime": null, "bestTime": "6:38.0", "avgSplit": "1:39.5", "split1": "1:39.3", "split2": "1:41.2", "split3": "1:41.4", "split4": "1:36.1", "avgRate": "32"}, {"name": "Quinn", "squad": "V. Boys", "heatTime": "7:18.9", "semiTime": "7:14.6", "finalTime": "7:21.2", "bestTime": "7:14.6", "avgSplit": "1:48.7", "split1": "1:50.7", "split2": "1:50.5", "split3": "1:50.6", "split4": "1:46.5", "avgRate": "34"}, {"name": "Shelton", "squad": "V. Boys", "heatTime": "6:34.8", "semiTime": "6:44.0", "finalTime": null, "bestTime": "6:34.8", "avgSplit": "1:38.7", "split1": "1:39.5", "split2": "1:39.7", "split3": "1:38.6", "split4": "1:36.2", "avgRate": "35"}, {"name": "Stephen", "squad": "V. Boys", "heatTime": "6:59.2", "semiTime": null, "finalTime": "7:06.2", "bestTime": "6:59.2", "avgSplit": "1:44.8", "split1": "1:43.3", "split2": "1:45.7", "split3": "1:46.5", "split4": "1:43.7", "avgRate": "30"}, {"name": "Sully", "squad": "V. Boys", "heatTime": "6:26.6", "semiTime": "6:45.0", "finalTime": null, "bestTime": "6:26.6", "avgSplit": "1:36.7", "split1": "1:35.1", "split2": "1:38.5", "split3": "1:38.3", "split4": "1:34.6", "avgRate": "35"}, {"name": "Alice", "squad": "V. Girls", "heatTime": "7:58.7", "semiTime": "8:02.3", "finalTime": null, "bestTime": "7:58.7", "avgSplit": "1:59.7", "split1": "1:56.0", "split2": "2:00.1", "split3": "2:02.6", "split4": "2:00.0", "avgRate": "32"}, {"name": "Gigi", "squad": "V. Girls", "heatTime": "8:06.8", "semiTime": "9:33.4", "finalTime": null, "bestTime": "8:06.8", "avgSplit": "2:01.7", "split1": "2:00.2", "split2": "2:01.1", "split3": "2:04.7", "split4": "2:00.7", "avgRate": "29"}, {"name": "Josie", "squad": "V. Girls", "heatTime": "8:37.2", "semiTime": null, "finalTime": null, "bestTime": "8:37.2", "avgSplit": "2:09.3", "split1": "2:06.7", "split2": "2:10.7", "split3": "2:11.0", "split4": "2:08.8", "avgRate": "31"}, {"name": "Kaitlin", "squad": "V. Girls", "heatTime": "8:02.3", "semiTime": "8:17.9", "finalTime": null, "bestTime": "8:02.3", "avgSplit": "2:00.6", "split1": "1:59.3", "split2": null, "split3": "2:01.3", "split4": "2:00.4", "avgRate": "33"}, {"name": "Kate", "squad": "V. Girls", "heatTime": "8:33.5", "semiTime": null, "finalTime": null, "bestTime": "8:33.5", "avgSplit": "2:08.4", "split1": "2:05.2", "split2": "2:05.2", "split3": "2:11.8", "split4": "2:11.8", "avgRate": "29"}, {"name": "Katellyn", "squad": "V. Girls", "heatTime": "7:42.2", "semiTime": "7:46.4", "finalTime": null, "bestTime": "7:42.2", "avgSplit": "1:55.5", "split1": "1:54.6", "split2": "1:56.8", "split3": "1:56.5", "split4": "1:54.3", "avgRate": "29"}, {"name": "Katie", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null, "avgRate": null}, {"name": "London", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null, "avgRate": null}, {"name": "Lucy", "squad": "V. Girls", "heatTime": "7:44.6", "semiTime": "7:42.6", "finalTime": null, "bestTime": "7:42.6", "avgSplit": "1:55.7", "split1": "1:53.3", "split2": "1:54.6", "split3": "1:58.7", "split4": "1:58.0", "avgRate": "32"}, {"name": "Macy", "squad": "V. Girls", "heatTime": "8:12.8", "semiTime": null, "finalTime": null, "bestTime": "8:12.8", "avgSplit": "2:03.2", "split1": "2:04.8", "split2": "2:04.3", "split3": "2:03.4", "split4": "2:00.3", "avgRate": "29"}, {"name": "Maja", "squad": "V. Girls", "heatTime": "7:44.7", "semiTime": "7:48.5", "finalTime": null, "bestTime": "7:44.7", "avgSplit": "1:56.2", "split1": "1:53.3", "split2": "1:54.6", "split3": "2:00.0", "split4": "1:56.8", "avgRate": "30"}, {"name": "Maria Elena", "squad": "V. Girls", "heatTime": "7:48.4", "semiTime": "7:50.8", "finalTime": null, "bestTime": "7:48.4", "avgSplit": "1:57.1", "split1": "1:54.1", "split2": "1:54.9", "split3": "2:00.9", "split4": "1:58.4", "avgRate": "28"}, {"name": "Nina", "squad": "V. Girls", "heatTime": "8:35.6", "semiTime": "8:24.1", "finalTime": null, "bestTime": "8:24.1", "avgSplit": "2:06.0", "split1": "2:05.2", "split2": "2:06.2", "split3": "2:13.6", "split4": "2:08.2", "avgRate": "31"}, {"name": "Nora", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null, "avgRate": null}, {"name": "Petyon", "squad": "V. Girls", "heatTime": "7:56.0", "semiTime": "7:58.6", "finalTime": null, "bestTime": "7:56.0", "avgSplit": "1:59.0", "split1": "1:56.4", "split2": "1:57.5", "split3": "2:03.4", "split4": "1:58.7", "avgRate": "32"}, {"name": "Emma", "squad": "N. Girls", "heatTime": "8:08.8", "semiTime": "8:32.1", "finalTime": null, "bestTime": "8:08.8", "avgSplit": "2:02.2", "split1": "2:00.1", "split2": "2:02.1", "split3": "2:04.5", "split4": "2:02.0", "avgRate": "31"}, {"name": "Geraldine", "squad": "N. Girls", "heatTime": "8:53.0", "semiTime": null, "finalTime": null, "bestTime": "8:53.0", "avgSplit": "2:13.2", "split1": "2:10.7", "split2": "2:13.1", "split3": "2:15.5", "split4": "2:13.8", "avgRate": null}, {"name": "Isabel", "squad": "N. Girls", "heatTime": "8:54.6", "semiTime": null, "finalTime": null, "bestTime": "8:54.6", "avgSplit": "2:13.7", "split1": "2:12.6", "split2": "2:16.5", "split3": "2:17.1", "split4": "2:08.4", "avgRate": "29"}, {"name": "Kate (FR)", "squad": "N. Girls", "heatTime": "8:28.8", "semiTime": null, "finalTime": "8:30.3", "bestTime": "8:28.8", "avgSplit": "2:07.2", "split1": "2:03.1", "split2": "2:07.8", "split3": "2:09.0", "split4": "2:08.6", "avgRate": "30"}, {"name": "Liv", "squad": "N. Girls", "heatTime": "8:52.9", "semiTime": "8:49.9", "finalTime": null, "bestTime": "8:49.9", "avgSplit": "2:12.5", "split1": "2:08.9", "split2": "2:14.7", "split3": "2:15.0", "split4": "2:14.2", "avgRate": "29"}, {"name": "Ruthie", "squad": "N. Girls", "heatTime": "8:04.1", "semiTime": "8:29.4", "finalTime": null, "bestTime": "8:04.1", "avgSplit": "2:01.0", "split1": "1:48.8", "split2": "2:02.8", "split3": "2:07.7", "split4": "2:04.8", "avgRate": "31"}, {"name": "Olivia", "squad": "N. Girls", "heatTime": "8:24.1", "semiTime": "8:21.0", "finalTime": "8:18.1", "bestTime": "8:18.1", "avgSplit": "2:04.5", "split1": "2:04.8", "split2": "2:07.4", "split3": "2:07.0", "split4": "2:05.0", "avgRate": "26"}], "events": [{"name": "A/B Semi 1 \u2014 Girls", "datetime": "2026-02-25T16:57", "type": "semi", "participants": [{"lane": 3, "place": 1, "name": "Katellyn", "time": "7:46.4", "split": "1:55.5", "rate": "29"}, {"lane": 4, "place": 2, "name": "Maria Elena", "time": "7:50.8", "split": "1:57.1", "rate": "28"}, {"lane": 2, "place": 3, "name": "Petyon", "time": "7:58.6", "split": "1:59.0", "rate": "32"}, {"lane": 5, "place": 4, "name": "Ruthie", "time": "8:29.4", "split": "2:01.0", "rate": "31"}, {"lane": 1, "place": 5, "name": "Gigi", "time": "9:33.4", "split": "2:01.7", "rate": "29"}]}, {"name": "A/B Semi 2 \u2014 Girls", "datetime": "2026-02-25T17:10", "type": "semi", "participants": [{"lane": 3, "place": 1, "name": "Lucy", "time": "7:42.6", "split": "1:55.7", "rate": "32"}, {"lane": 4, "place": 2, "name": "Maja", "time": "7:48.5", "split": "1:56.2", "rate": "30"}, {"lane": 2, "place": 3, "name": "Alice", "time": "8:02.3", "split": "1:59.7", "rate": "32"}, {"lane": 5, "place": 4, "name": "Kaitlin", "time": "8:17.9", "split": "2:00.6", "rate": "33"}, {"lane": 1, "place": 5, "name": "Emma", "time": "8:32.1", "split": "2:02.2", "rate": "31"}]}, {"name": "A/B Semi 1 \u2014 Boys", "datetime": "2026-02-25T16:31", "type": "semi", "participants": [{"lane": 6, "place": 1, "name": "JTH", "time": "6:36.8", "split": "1:39.2", "rate": "29"}, {"lane": 4, "place": 2, "name": "Joe", "time": "6:39.0", "split": "1:35.0", "rate": "35"}, {"lane": 7, "place": 3, "name": "Jack", "time": "6:42.3", "split": "1:40.5", "rate": "29"}, {"lane": 5, "place": 4, "name": "Shelton", "time": "6:43.9", "split": "1:38.7", "rate": "35"}, {"lane": 3, "place": 5, "name": "Edward", "time": "6:44.0", "split": "1:38.10", "rate": "30"}, {"lane": 2, "place": 6, "name": "Alexander", "time": "7:05.0", "split": "1:41.6", "rate": "33"}, {"lane": 1, "place": 7, "name": "Gus", "time": "7:17.7", "split": "1:43.9", "rate": "33"}]}, {"name": "A/B Semi 2 \u2014 Boys", "datetime": "2026-02-25T16:44", "type": "semi", "participants": [{"lane": 4, "place": 1, "name": "Carter Y", "time": "6:42.1", "split": "1:36.7", "rate": "36"}, {"lane": 3, "place": 2, "name": "Sully", "time": "6:45.1", "split": "1:36.7", "rate": "35"}, {"lane": 2, "place": 3, "name": "Paul", "time": "6:46.3", "split": "1:39.5", "rate": "32"}, {"lane": 5, "place": 3, "name": "Alex M", "time": "6:46.3", "split": "1:39.10", "rate": "30"}, {"lane": 6, "place": 5, "name": "Josh", "time": "7:08.9", "split": "1:41.9", "rate": "31"}, {"lane": 1, "place": 6, "name": "Elliott", "time": "7:57.9", "split": "1:42.5", "rate": "31"}]}, {"name": "C/D Semi 3 \u2014 Girls", "datetime": "2026-02-26T15:15", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Macy", "time": "8:16.4", "split": "2:03.2", "rate": "29"}, {"lane": 2, "place": 2, "name": "Kate", "time": "8:22.6", "split": "2:08.4", "rate": "29"}, {"lane": 3, "place": 3, "name": "Nina", "time": "8:24.1", "split": "2:06.0", "rate": "31"}, {"lane": 4, "place": 4, "name": "Geraldine", "time": "8:56.1", "split": "2:13.2", "rate": null}, {"lane": 5, "place": 5, "name": "Isabel", "time": "9:11.5", "split": "2:13.7", "rate": "29"}]}, {"name": "C/D Semi 4 \u2014 Girls", "datetime": "2026-02-26T15:15", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Olivia", "time": "8:21.0", "split": "2:04.5", "rate": "26"}, {"lane": 2, "place": 2, "name": "Kate (FR)", "time": "8:24.3", "split": "2:07.2", "rate": "30"}, {"lane": 3, "place": 3, "name": "Josie", "time": "8:30.2", "split": "2:09.3", "rate": "31"}, {"lane": 4, "place": 4, "name": "Liv", "time": "8:49.9", "split": "2:12.5", "rate": "29"}, {"lane": 5, "place": null, "name": "Katie", "time": null, "split": null, "rate": null}]}, {"name": "C/D Semi 1 \u2014 Boys", "datetime": "2026-02-26T15:28", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Andrew A", "time": "7:05.6", "split": "1:44.6", "rate": "30"}, {"lane": 2, "place": 2, "name": "Emmett", "time": "7:08.5", "split": "1:46.0", "rate": "30"}, {"lane": 3, "place": 3, "name": "Max", "time": "7:14.2", "split": "1:47.5", "rate": "35"}, {"lane": 4, "place": 4, "name": "Gaius", "time": "7:18.9", "split": "1:50.3", "rate": "31"}, {"lane": 5, "place": 5, "name": "Teddy", "time": "7:20.1", "split": "1:47.4", "rate": "32"}, {"lane": 6, "place": 6, "name": "Nicolas", "time": "7:49.5", "split": "1:57.4", "rate": "29"}, {"lane": 7, "place": null, "name": "Sam", "time": null, "split": "2:00.1", "rate": "30"}]}, {"name": "C/D Semi 2 \u2014 Boys", "datetime": "2026-02-26T15:28", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Atticus", "time": "7:09.5", "split": "1:44.6", "rate": "31"}, {"lane": 2, "place": 2, "name": "Stephen", "time": "7:09.7", "split": "1:44.8", "rate": "30"}, {"lane": 4, "place": 3, "name": "Quinn", "time": "7:14.6", "split": "1:48.7", "rate": "34"}, {"lane": 3, "place": 4, "name": "Bode", "time": "7:15.7", "split": "1:49.2", "rate": "33"}, {"lane": 5, "place": 5, "name": "Jason", "time": "7:51.1", "split": "1:54.10", "rate": "30"}, {"lane": 6, "place": 6, "name": "Edison", "time": "7:52.7", "split": "1:55.0", "rate": "31"}]}, {"name": "Petite Final \u2014 Girls", "datetime": "2026-02-26T15:41", "type": "final", "participants": [{"lane": 3, "place": 6, "name": "Alice", "time": "7:53.6", "split": "1:59.7", "rate": "32"}, {"lane": 2, "place": 7, "name": "Kaitlin", "time": "8:04.1", "split": "2:00.6", "rate": "33"}, {"lane": 4, "place": 8, "name": "Ruthie", "time": "8:04.3", "split": "2:01.0", "rate": "31"}, {"lane": 5, "place": 9, "name": "Emma", "time": "8:10.3", "split": "2:02.2", "rate": "31"}, {"lane": 1, "place": 10, "name": "Gigi", "time": "8:11.0", "split": "2:01.7", "rate": "29"}]}, {"name": "Petite Final \u2014 Boys", "datetime": "2026-02-26T15:54", "type": "final", "participants": [{"lane": 4, "place": 8, "name": "Edward", "time": "6:37.9", "split": "1:38.10", "rate": "30"}, {"lane": 3, "place": 9, "name": "Alex M", "time": "6:45.3", "split": "1:39.10", "rate": "30"}, {"lane": 1, "place": 10, "name": "Alexander", "time": "6:46.5", "split": "1:41.6", "rate": "33"}, {"lane": 2, "place": 11, "name": "Josh", "time": "6:47.5", "split": "1:41.9", "rate": "31"}, {"lane": 6, "place": 12, "name": "Gus", "time": "6:58.1", "split": "1:43.9", "rate": "33"}, {"lane": 5, "place": 13, "name": "Elliott", "time": "6:58.7", "split": "1:42.5", "rate": "31"}]}, {"name": "D Final \u2014 Girls", "datetime": "2026-02-26T16:07", "type": "final", "participants": [{"lane": 4, "place": 16, "name": "Josie", "time": "8:28.0", "split": "2:09.3", "rate": "31"}, {"lane": 1, "place": 17, "name": "Isabel", "time": "8:48.6", "split": "2:13.7", "rate": "29"}, {"lane": 3, "place": 18, "name": "Geraldine", "time": "8:51.0", "split": "2:13.2", "rate": null}, {"lane": 2, "place": 19, "name": "Liv", "time": "8:54.9", "split": "2:12.5", "rate": "29"}, {"lane": 5, "place": null, "name": "Katie", "time": null, "split": null, "rate": null}]}, {"name": "D Final \u2014 Boys", "datetime": "2026-02-26T16:20", "type": "final", "participants": [{"lane": 3, "place": 21, "name": "Gaius", "time": "7:24.8", "split": "1:50.3", "rate": "31"}, {"lane": 2, "place": 22, "name": "Teddy", "time": "7:33.9", "split": "1:47.4", "rate": "32"}, {"lane": 1, "place": 23, "name": "Edison", "time": "7:43.7", "split": "1:55.0", "rate": "31"}, {"lane": 4, "place": 24, "name": "Jason", "time": "7:48.1", "split": "1:54.10", "rate": "30"}, {"lane": 5, "place": 25, "name": "Nicolas", "time": "7:53.0", "split": "1:57.4", "rate": "29"}]}, {"name": "C Final \u2014 Girls", "datetime": "2026-02-26T16:33", "type": "final", "participants": [{"lane": 3, "place": 11, "name": "Macy", "time": "8:11.8", "split": "2:03.2", "rate": "29"}, {"lane": 4, "place": 12, "name": "Olivia", "time": "8:18.1", "split": "2:04.5", "rate": "26"}, {"lane": 1, "place": 13, "name": "Nina", "time": "8:26.9", "split": "2:06.0", "rate": "31"}, {"lane": 5, "place": 14, "name": "Kate", "time": "8:27.7", "split": "2:08.4", "rate": "29"}, {"lane": 2, "place": 15, "name": "Kate (FR)", "time": "8:30.3", "split": "2:07.2", "rate": "30"}]}, {"name": "C Final \u2014 Boys", "datetime": "2026-02-26T16:46", "type": "final", "participants": [{"lane": 4, "place": 14, "name": "Atticus", "time": "7:03.2", "split": "1:44.6", "rate": "31"}, {"lane": 5, "place": 15, "name": "Emmett", "time": "7:04.0", "split": "1:46.0", "rate": "30"}, {"lane": 2, "place": 16, "name": "Stephen", "time": "7:06.2", "split": "1:44.8", "rate": "30"}, {"lane": 3, "place": 17, "name": "Andrew A", "time": "7:08.2", "split": "1:44.6", "rate": "30"}, {"lane": 7, "place": 18, "name": "Bode", "time": "7:18.5", "split": "1:49.2", "rate": "33"}, {"lane": 6, "place": 19, "name": "Max", "time": "7:20.3", "split": "1:47.5", "rate": "35"}]}, {"name": "Grand Final \u2014 Girls", "datetime": "2026-02-26T16:59", "type": "final", "participants": [{"lane": 4, "place": 1, "name": "Lucy", "time": "7:37.0", "split": "1:55.7", "rate": "32"}, {"lane": 3, "place": 2, "name": "Katellyn", "time": "7:41.4", "split": "1:55.5", "rate": "29"}, {"lane": 5, "place": 3, "name": "Maria Elena", "time": "7:44.8", "split": "1:57.1", "rate": "28"}, {"lane": 2, "place": 4, "name": "Maja", "time": "7:44.9", "split": "1:56.2", "rate": "30"}, {"lane": 1, "place": 5, "name": "Petyon", "time": "8:03.7", "split": "1:59.0", "rate": "32"}]}, {"name": "Grand Final \u2014 Boys", "datetime": "2026-02-26T17:12", "type": "final", "participants": [{"lane": 3, "place": 1, "name": "JTH", "time": "6:05.5", "split": "1:39.2", "rate": "29"}, {"lane": 1, "place": 2, "name": "Sully", "time": "6:31.4", "split": "1:36.7", "rate": "35"}, {"lane": 4, "place": 3, "name": "Joe", "time": "6:34.8", "split": "1:35.0", "rate": "35"}, {"lane": 6, "place": 4, "name": "Carter Y", "time": "6:35.7", "split": "1:36.7", "rate": "36"}, {"lane": 2, "place": 6, "name": "Jack", "time": "6:52.5", "split": "1:40.5", "rate": "29"}, {"lane": 5, "place": 6, "name": "Paul", "time": "6:52.5", "split": "1:39.5", "rate": "32"}]}]};
+const D = {"athletes": [{"name": "Bode", "squad": "N. Boys", "heatTime": "7:17.0", "semiTime": "7:15.7", "finalTime": "7:18.5", "bestTime": "7:15.7", "avgSplit": "1:49.2", "split1": "1:44.3", "split2": "1:50.2", "split3": "1:52.3", "split4": "1:50.3"}, {"name": "Edison", "squad": "N. Boys", "heatTime": "7:40.0", "semiTime": "7:52.7", "finalTime": "7:43.7", "bestTime": "7:40.0", "avgSplit": "1:55.0", "split1": "1:54.8", "split2": "1:56.4", "split3": "1:55.4", "split4": "1:53.3"}, {"name": "Gaius", "squad": "N. Boys", "heatTime": "7:21.4", "semiTime": "7:18.9", "finalTime": "7:24.8", "bestTime": "7:18.9", "avgSplit": "1:50.3", "split1": "1:49.7", "split2": "1:51.2", "split3": "1:51.4", "split4": "1:49.2"}, {"name": "Jason", "squad": "N. Boys", "heatTime": "7:39.9", "semiTime": "7:51.1", "finalTime": "7:48.1", "bestTime": "7:39.9", "avgSplit": "1:54.9", "split1": "1:54.4", "split2": "1:54.8", "split3": "1:55.7", "split4": "1:55.1"}, {"name": "Nicolas", "squad": "N. Boys", "heatTime": "7:49.6", "semiTime": "7:49.5", "finalTime": "7:53.0", "bestTime": "7:49.5", "avgSplit": "1:57.4", "split1": "1:50.4", "split2": "1:57.1", "split3": "2:02.6", "split4": "1:59.6"}, {"name": "Sam", "squad": "N. Boys", "heatTime": "8:00.3", "semiTime": null, "finalTime": null, "bestTime": "8:00.3", "avgSplit": "2:00.0", "split1": "1:59.0", "split2": "2:00.6", "split3": "2:02.0", "split4": "1:58.7"}, {"name": "Teddy", "squad": "N. Boys", "heatTime": "7:23.4", "semiTime": "7:09.5", "finalTime": "7:33.9", "bestTime": "7:09.5", "avgSplit": "1:50.8", "split1": "1:49.0", "split2": "1:52.4", "split3": "1:54.0", "split4": "1:48.0"}, {"name": "Alex M", "squad": "V. Boys", "heatTime": "6:39.9", "semiTime": "6:46.3", "finalTime": "6:45.3", "bestTime": "6:39.9", "avgSplit": "1:39.9", "split1": "1:38.6", "split2": "1:41.0", "split3": "1:40.5", "split4": "1:38.7"}, {"name": "Alexander", "squad": "V. Boys", "heatTime": "6:48.9", "semiTime": "7:05.0", "finalTime": "6:46.5", "bestTime": "6:46.5", "avgSplit": "1:42.2", "split1": "1:39.0", "split2": "1:42.1", "split3": "1:43.7", "split4": "1:43.7"}, {"name": "Andrew A", "squad": "V. Boys", "heatTime": "6:58.3", "semiTime": "7:05.6", "finalTime": "7:08.2", "bestTime": "6:58.3", "avgSplit": "1:44.5", "split1": "1:44.8", "split2": "1:44.9", "split3": "1:46.2", "split4": "1:42.0"}, {"name": "Atticus", "squad": "V. Boys", "heatTime": "6:58.4", "semiTime": "7:09.5", "finalTime": "7:03.2", "bestTime": "6:58.4", "avgSplit": "1:44.6", "split1": "1:43.2", "split2": "1:44.8", "split3": "1:45.2", "split4": "1:44.8"}, {"name": "Calum", "squad": "V. Boys", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null}, {"name": "Carter Y", "squad": "V. Boys", "heatTime": "6:26.9", "semiTime": "6:42.0", "finalTime": "6:35.7", "bestTime": "6:26.9", "avgSplit": "1:36.7", "split1": "1:36.0", "split2": "1:38.5", "split3": "1:37.4", "split4": "1:35.1"}, {"name": "Edward", "squad": "V. Boys", "heatTime": "6:35.9", "semiTime": "6:44.0", "finalTime": "6:37.9", "bestTime": "6:35.9", "avgSplit": "1:38.9", "split1": "1:37.5", "split2": "1:39.2", "split3": "1:41.2", "split4": "1:38.0"}, {"name": "Elliott", "squad": "V. Boys", "heatTime": "6:49.8", "semiTime": "7:57.9", "finalTime": "6:58.7", "bestTime": "6:49.8", "avgSplit": "1:42.4", "split1": "1:41.7", "split2": "1:42.3", "split3": "1:42.4", "split4": "1:42.7"}, {"name": "Emmett", "squad": "V. Boys", "heatTime": "7:06.6", "semiTime": "7:08.5", "finalTime": "7:04.0", "bestTime": "7:04.0", "avgSplit": "1:46.6", "split1": "1:43.0", "split2": "1:44.5", "split3": "1:45.0", "split4": "1:49.2"}, {"name": "Gus", "squad": "V. Boys", "heatTime": "6:55.6", "semiTime": "7:17.7", "finalTime": "6:58.1", "bestTime": "6:55.6", "avgSplit": "1:43.9", "split1": "1:42.0", "split2": "1:45.3", "split3": "1:45.3", "split4": "1:43.0"}, {"name": "Jack", "squad": "V. Boys", "heatTime": "6:55.0", "semiTime": "6:42.0", "finalTime": "6:52.5", "bestTime": "6:42.0", "avgSplit": "1:43.7", "split1": "1:39.7", "split2": "1:44.8", "split3": "1:44.7", "split4": "1:44.7"}, {"name": "Joe", "squad": "V. Boys", "heatTime": "6:20.0", "semiTime": "6:39.0", "finalTime": "6:34.8", "bestTime": "6:20.0", "avgSplit": "1:35.0", "split1": "1:35.0", "split2": "1:35.8", "split3": "1:35.4", "split4": "1:33.7"}, {"name": "Josh", "squad": "V. Boys", "heatTime": "6:54.2", "semiTime": "7:08.9", "finalTime": "6:47.5", "bestTime": "6:47.5", "avgSplit": "1:43.5", "split1": "1:45.0", "split2": "1:46.2", "split3": "1:43.8", "split4": "1:37.2"}, {"name": "JTH", "squad": "V. Boys", "heatTime": "6:45.8", "semiTime": "6:36.8", "finalTime": "6:05.5", "bestTime": "6:05.5", "avgSplit": "1:41.5", "split1": "1:40.3", "split2": "1:41.1", "split3": "1:42.0", "split4": "1:42.6"}, {"name": "Max", "squad": "V. Boys", "heatTime": "7:09.8", "semiTime": "7:14.2", "finalTime": "7:20.3", "bestTime": "7:09.8", "avgSplit": "1:47.4", "split1": "1:47.1", "split2": "1:48.9", "split3": "1:48.3", "split4": "1:45.5"}, {"name": "Paul", "squad": "V. Boys", "heatTime": "6:38.0", "semiTime": "6:46.3", "finalTime": "6:52.5", "bestTime": "6:38.0", "avgSplit": "1:39.5", "split1": "1:39.3", "split2": "1:41.2", "split3": "1:41.4", "split4": "1:36.1"}, {"name": "Quinn", "squad": "V. Boys", "heatTime": "7:18.9", "semiTime": "7:14.6", "finalTime": "7:21.2", "bestTime": "7:14.6", "avgSplit": "1:49.7", "split1": "1:50.7", "split2": "1:50.5", "split3": "1:50.6", "split4": "1:46.5"}, {"name": "Shelton", "squad": "V. Boys", "heatTime": "6:34.8", "semiTime": "6:43.9", "finalTime": null, "bestTime": "6:34.8", "avgSplit": "1:38.7", "split1": "1:39.5", "split2": "1:39.7", "split3": "1:38.6", "split4": "1:36.2"}, {"name": "Stephen", "squad": "V. Boys", "heatTime": "6:59.2", "semiTime": "7:09.7", "finalTime": "7:06.2", "bestTime": "6:59.2", "avgSplit": "1:44.8", "split1": "1:43.3", "split2": "1:45.7", "split3": "1:46.5", "split4": "1:43.7"}, {"name": "Sully", "squad": "V. Boys", "heatTime": "6:26.6", "semiTime": "6:45.0", "finalTime": "6:31.4", "bestTime": "6:26.6", "avgSplit": "1:36.6", "split1": "1:35.1", "split2": "1:38.5", "split3": "1:38.3", "split4": "1:34.6"}, {"name": "Alice", "squad": "V. Girls", "heatTime": "7:58.7", "semiTime": "8:02.3", "finalTime": "7:53.6", "bestTime": "7:53.6", "avgSplit": "1:59.6", "split1": "1:56.0", "split2": "2:00.1", "split3": "2:02.6", "split4": "2:00.0"}, {"name": "Gigi", "squad": "V. Girls", "heatTime": "8:06.8", "semiTime": "9:33.4", "finalTime": "8:11.0", "bestTime": "8:06.8", "avgSplit": "2:01.7", "split1": "2:00.2", "split2": "2:01.1", "split3": "2:04.7", "split4": "2:00.7"}, {"name": "Josie", "squad": "V. Girls", "heatTime": "8:37.2", "semiTime": "8:30.2", "finalTime": "8:28.0", "bestTime": "8:28.0", "avgSplit": "2:09.3", "split1": "2:06.7", "split2": "2:10.7", "split3": "2:11.0", "split4": "2:08.8"}, {"name": "Kaitlin", "squad": "V. Girls", "heatTime": "8:02.3", "semiTime": "8:17.9", "finalTime": "8:04.1", "bestTime": "8:02.3", "avgSplit": "2:00.5", "split1": "1:59.3", "split2": null, "split3": "2:01.3", "split4": "2:00.4"}, {"name": "Kate", "squad": "V. Girls", "heatTime": "8:33.5", "semiTime": "8:22.6", "finalTime": "8:27.7", "bestTime": "8:22.6", "avgSplit": "2:08.3", "split1": "2:05.2", "split2": "2:05.2", "split3": "2:11.8", "split4": "2:11.8"}, {"name": "Katellyn", "squad": "V. Girls", "heatTime": "7:42.2", "semiTime": "7:46.4", "finalTime": "7:41.4", "bestTime": "7:41.4", "avgSplit": "1:55.5", "split1": "1:54.6", "split2": "1:56.8", "split3": "1:56.5", "split4": "1:54.3"}, {"name": "Katie", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null}, {"name": "London", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null}, {"name": "Lucy", "squad": "V. Girls", "heatTime": "7:44.6", "semiTime": "7:42.6", "finalTime": "7:37.0", "bestTime": "7:37.0", "avgSplit": "1:56.1", "split1": "1:53.3", "split2": "1:54.6", "split3": "1:58.7", "split4": "1:58.0"}, {"name": "Macy", "squad": "V. Girls", "heatTime": "8:12.8", "semiTime": "8:16.4", "finalTime": "8:11.8", "bestTime": "8:11.8", "avgSplit": "2:03.2", "split1": "2:04.8", "split2": "2:04.3", "split3": "2:03.4", "split4": "2:00.3"}, {"name": "Maja", "squad": "V. Girls", "heatTime": "7:44.7", "semiTime": "7:48.5", "finalTime": "7:44.9", "bestTime": "7:44.7", "avgSplit": "1:56.1", "split1": "1:53.3", "split2": "1:54.6", "split3": "2:00.0", "split4": "1:56.8"}, {"name": "Maria Elena", "squad": "V. Girls", "heatTime": "7:48.4", "semiTime": "7:50.8", "finalTime": "7:44.8", "bestTime": "7:44.8", "avgSplit": "1:57.1", "split1": "1:54.1", "split2": "1:54.9", "split3": "2:00.9", "split4": "1:58.4"}, {"name": "Nina", "squad": "V. Girls", "heatTime": "8:35.6", "semiTime": "8:24.1", "finalTime": "8:26.9", "bestTime": "8:24.1", "avgSplit": "2:08.9", "split1": "2:05.2", "split2": "2:06.2", "split3": "2:13.6", "split4": "2:08.2"}, {"name": "Nora", "squad": "V. Girls", "heatTime": null, "semiTime": null, "finalTime": null, "bestTime": null, "avgSplit": null, "split1": null, "split2": null, "split3": null, "split4": null}, {"name": "Petyon", "squad": "V. Girls", "heatTime": "7:56.0", "semiTime": "7:58.6", "finalTime": "8:03.7", "bestTime": "7:56.0", "avgSplit": "1:59.0", "split1": "1:56.4", "split2": "1:57.5", "split3": "2:03.4", "split4": "1:58.7"}, {"name": "Emma", "squad": "N. Girls", "heatTime": "8:08.8", "semiTime": "8:32.1", "finalTime": "8:10.3", "bestTime": "8:08.8", "avgSplit": "2:02.2", "split1": "2:00.1", "split2": "2:02.1", "split3": "2:04.5", "split4": "2:02.0"}, {"name": "Geraldine", "squad": "N. Girls", "heatTime": "8:53.0", "semiTime": "8:56.1", "finalTime": "8:51.0", "bestTime": "8:51.0", "avgSplit": "2:13.2", "split1": "2:10.7", "split2": "2:13.1", "split3": "2:15.5", "split4": "2:13.8"}, {"name": "Isabel", "squad": "N. Girls", "heatTime": "8:54.6", "semiTime": "9:11.5", "finalTime": "8:48.6", "bestTime": "8:48.6", "avgSplit": "2:13.6", "split1": "2:12.6", "split2": "2:16.5", "split3": "2:17.1", "split4": "2:08.4"}, {"name": "Kate (FR)", "squad": "N. Girls", "heatTime": "8:28.8", "semiTime": "8:24.3", "finalTime": "8:30.3", "bestTime": "8:24.3", "avgSplit": "2:07.1", "split1": "2:03.1", "split2": "2:07.8", "split3": "2:09.0", "split4": "2:08.6"}, {"name": "Liv", "squad": "N. Girls", "heatTime": "8:52.9", "semiTime": "8:49.9", "finalTime": "8:54.9", "bestTime": "8:49.9", "avgSplit": "2:13.2", "split1": "2:08.9", "split2": "2:14.7", "split3": "2:15.0", "split4": "2:14.2"}, {"name": "Ruthie", "squad": "N. Girls", "heatTime": "8:04.1", "semiTime": "8:29.4", "finalTime": "8:04.3", "bestTime": "8:04.1", "avgSplit": "2:01.0", "split1": "1:48.8", "split2": "2:02.8", "split3": "2:07.7", "split4": "2:04.8"}, {"name": "Olivia", "squad": "N. Girls", "heatTime": "8:24.1", "semiTime": "8:21.0", "finalTime": "8:18.1", "bestTime": "8:18.1", "avgSplit": "2:06.0", "split1": "2:04.8", "split2": "2:07.4", "split3": "2:07.0", "split4": "2:05.0"}], "events": [{"name": "A/B Semi 1 \u2014 Girls", "datetime": "2026-02-25T16:57", "type": "semi", "participants": [{"lane": 3, "place": 1, "name": "Katellyn", "time": "7:46.4", "split": "1:56.6"}, {"lane": 4, "place": 2, "name": "Maria Elena", "time": "7:50.8", "split": "1:57.7"}, {"lane": 2, "place": 3, "name": "Petyon", "time": "7:58.6", "split": "1:59.7"}, {"lane": 5, "place": 4, "name": "Ruthie", "time": "8:29.4", "split": "2:07.3"}, {"lane": 1, "place": 5, "name": "Gigi", "time": "9:33.4", "split": "2:23.3"}]}, {"name": "A/B Semi 2 \u2014 Girls", "datetime": "2026-02-25T17:10", "type": "semi", "participants": [{"lane": 3, "place": 1, "name": "Lucy", "time": "7:42.6", "split": "1:55.7"}, {"lane": 4, "place": 2, "name": "Maja", "time": "7:48.5", "split": "1:57.1"}, {"lane": 2, "place": 3, "name": "Alice", "time": "8:02.3", "split": "2:00.6"}, {"lane": 5, "place": 4, "name": "Kaitlin", "time": "8:17.9", "split": "2:04.5"}, {"lane": 1, "place": 5, "name": "Emma", "time": "8:32.1", "split": "2:08.0"}]}, {"name": "A/B Semi 1 \u2014 Boys", "datetime": "2026-02-25T16:31", "type": "semi", "participants": [{"lane": 6, "place": 1, "name": "JTH", "time": "6:36.8", "split": "1:39.2"}, {"lane": 4, "place": 2, "name": "Joe", "time": "6:39.0", "split": "1:39.8"}, {"lane": 7, "place": 3, "name": "Jack", "time": "6:42.3", "split": "1:40.6"}, {"lane": 5, "place": 4, "name": "Shelton", "time": "6:43.9", "split": "1:41.0"}, {"lane": 3, "place": 5, "name": "Edward", "time": "6:44.0", "split": "1:41.0"}, {"lane": 2, "place": 6, "name": "Alexander", "time": "7:05.0", "split": "1:46.2"}, {"lane": 1, "place": 7, "name": "Gus", "time": "7:17.7", "split": "1:49.4"}]}, {"name": "A/B Semi 2 \u2014 Boys", "datetime": "2026-02-25T16:44", "type": "semi", "participants": [{"lane": 4, "place": 1, "name": "Carter Y", "time": "6:42.1", "split": "1:40.5"}, {"lane": 3, "place": 2, "name": "Sully", "time": "6:45.1", "split": "1:41.3"}, {"lane": 2, "place": 3, "name": "Paul", "time": "6:46.3", "split": "1:41.6"}, {"lane": 5, "place": 3, "name": "Alex M", "time": "6:46.3", "split": "1:41.6"}, {"lane": 6, "place": 5, "name": "Josh", "time": "7:08.9", "split": "1:47.2"}, {"lane": 1, "place": 6, "name": "Elliott", "time": "7:57.9", "split": "1:59.5"}]}, {"name": "C/D Semi 3 \u2014 Girls", "datetime": "2026-02-26T15:15", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Macy", "time": "8:16.4", "split": "2:04.1"}, {"lane": 2, "place": 2, "name": "Kate", "time": "8:22.6", "split": "2:05.7"}, {"lane": 3, "place": 3, "name": "Nina", "time": "8:24.1", "split": "2:06.0"}, {"lane": 4, "place": 4, "name": "Geraldine", "time": "8:56.1", "split": "2:14.0"}, {"lane": 5, "place": 5, "name": "Isabel", "time": "9:11.5", "split": "2:17.9"}]}, {"name": "C/D Semi 4 \u2014 Girls", "datetime": "2026-02-26T15:15", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Olivia", "time": "8:21.0", "split": "2:05.2"}, {"lane": 2, "place": 2, "name": "Kate (FR)", "time": "8:24.3", "split": "2:06.1"}, {"lane": 3, "place": 3, "name": "Josie", "time": "8:30.2", "split": "2:07.5"}, {"lane": 4, "place": 4, "name": "Liv", "time": "8:49.9", "split": "2:12.5"}, {"lane": 5, "place": null, "name": "Katie", "time": null, "split": null}]}, {"name": "C/D Semi 1 \u2014 Boys", "datetime": "2026-02-26T15:28", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Andrew A", "time": "7:05.6", "split": "1:46.4"}, {"lane": 2, "place": 2, "name": "Emmett", "time": "7:08.5", "split": "1:47.1"}, {"lane": 3, "place": 3, "name": "Max", "time": "7:14.2", "split": "1:48.5"}, {"lane": 4, "place": 4, "name": "Gaius", "time": "7:18.9", "split": "1:49.7"}, {"lane": 5, "place": 5, "name": "Teddy", "time": "7:20.1", "split": "1:50.0"}, {"lane": 6, "place": 6, "name": "Nicolas", "time": "7:49.5", "split": "1:57.4"}, {"lane": 7, "place": null, "name": "Sam", "time": null, "split": "2:00.1"}]}, {"name": "C/D Semi 2 \u2014 Boys", "datetime": "2026-02-26T15:28", "type": "semi", "participants": [{"lane": 1, "place": 1, "name": "Atticus", "time": "7:09.5", "split": "1:47.4"}, {"lane": 2, "place": 2, "name": "Stephen", "time": "7:09.7", "split": "1:47.4"}, {"lane": 4, "place": 3, "name": "Quinn", "time": "7:14.6", "split": "1:48.7"}, {"lane": 3, "place": 4, "name": "Bode", "time": "7:15.7", "split": "1:48.9"}, {"lane": 5, "place": 5, "name": "Jason", "time": "7:51.1", "split": "1:57.8"}, {"lane": 6, "place": 6, "name": "Edison", "time": "7:52.7", "split": "1:58.2"}]}, {"name": "Petite Final \u2014 Girls", "datetime": "2026-02-26T15:41", "type": "final", "participants": [{"lane": 3, "place": 6, "name": "Alice", "time": "7:53.6", "split": "1:58.4"}, {"lane": 2, "place": 7, "name": "Kaitlin", "time": "8:04.1", "split": "2:01.0"}, {"lane": 4, "place": 8, "name": "Ruthie", "time": "8:04.3", "split": "2:01.1"}, {"lane": 5, "place": 9, "name": "Emma", "time": "8:10.3", "split": "2:02.6"}, {"lane": 1, "place": 10, "name": "Gigi", "time": "8:11.0", "split": "2:02.8"}]}, {"name": "Petite Final \u2014 Boys", "datetime": "2026-02-26T15:54", "type": "final", "participants": [{"lane": 4, "place": 8, "name": "Edward", "time": "6:37.9", "split": "1:39.5"}, {"lane": 3, "place": 9, "name": "Alex M", "time": "6:45.3", "split": "1:41.3"}, {"lane": 1, "place": 10, "name": "Alexander", "time": "6:46.5", "split": "1:41.6"}, {"lane": 2, "place": 11, "name": "Josh", "time": "6:47.5", "split": "1:41.9"}, {"lane": 6, "place": 12, "name": "Gus", "time": "6:58.1", "split": "1:44.5"}, {"lane": 5, "place": 13, "name": "Elliott", "time": "6:58.7", "split": "1:44.7"}]}, {"name": "D Final \u2014 Girls", "datetime": "2026-02-26T16:07", "type": "final", "participants": [{"lane": 4, "place": 16, "name": "Josie", "time": "8:28.0", "split": "2:07.0"}, {"lane": 1, "place": 17, "name": "Isabel", "time": "8:48.6", "split": "2:12.2"}, {"lane": 3, "place": 18, "name": "Geraldine", "time": "8:51.0", "split": "2:12.8"}, {"lane": 2, "place": 19, "name": "Liv", "time": "8:54.9", "split": "2:13.7"}, {"lane": 5, "place": null, "name": "Katie", "time": null, "split": null}]}, {"name": "D Final \u2014 Boys", "datetime": "2026-02-26T16:20", "type": "final", "participants": [{"lane": 3, "place": 21, "name": "Gaius", "time": "7:24.8", "split": "1:51.2"}, {"lane": 2, "place": 22, "name": "Teddy", "time": "7:33.9", "split": "1:53.5"}, {"lane": 1, "place": 23, "name": "Edison", "time": "7:43.7", "split": "1:55.9"}, {"lane": 4, "place": 24, "name": "Jason", "time": "7:48.1", "split": "1:57.0"}, {"lane": 5, "place": 25, "name": "Nicolas", "time": "7:53.0", "split": "1:58.2"}]}, {"name": "C Final \u2014 Girls", "datetime": "2026-02-26T16:33", "type": "final", "participants": [{"lane": 3, "place": 11, "name": "Macy", "time": "8:11.8", "split": "2:03.0"}, {"lane": 4, "place": 12, "name": "Olivia", "time": "8:18.1", "split": "2:04.5"}, {"lane": 1, "place": 13, "name": "Nina", "time": "8:26.9", "split": "2:06.7"}, {"lane": 5, "place": 14, "name": "Kate", "time": "8:27.7", "split": "2:06.9"}, {"lane": 2, "place": 15, "name": "Kate (FR)", "time": "8:30.3", "split": "2:07.6"}]}, {"name": "C Final \u2014 Boys", "datetime": "2026-02-26T16:46", "type": "final", "participants": [{"lane": 4, "place": 14, "name": "Atticus", "time": "7:03.2", "split": "1:45.8"}, {"lane": 5, "place": 15, "name": "Emmett", "time": "7:04.0", "split": "1:46.0"}, {"lane": 2, "place": 16, "name": "Stephen", "time": "7:06.2", "split": "1:46.5"}, {"lane": 3, "place": 17, "name": "Andrew A", "time": "7:08.2", "split": "1:47.0"}, {"lane": 7, "place": 18, "name": "Bode", "time": "7:18.5", "split": "1:49.6"}, {"lane": 6, "place": 19, "name": "Max", "time": "7:20.3", "split": "1:50.1"}]}, {"name": "Grand Final \u2014 Girls", "datetime": "2026-02-26T16:59", "type": "final", "participants": [{"lane": 4, "place": 1, "name": "Lucy", "time": "7:37.0", "split": "1:54.2"}, {"lane": 3, "place": 2, "name": "Katellyn", "time": "7:41.4", "split": "1:55.3"}, {"lane": 5, "place": 3, "name": "Maria Elena", "time": "7:44.8", "split": "1:56.2"}, {"lane": 2, "place": 4, "name": "Maja", "time": "7:44.9", "split": "1:56.2"}, {"lane": 1, "place": 5, "name": "Petyon", "time": "8:03.7", "split": "2:00.9"}]}, {"name": "Grand Final \u2014 Boys", "datetime": "2026-02-26T17:12", "type": "final", "participants": [{"lane": 3, "place": 1, "name": "JTH", "time": "6:05.5", "split": "1:31.4"}, {"lane": 1, "place": 2, "name": "Sully", "time": "6:31.4", "split": "1:37.8"}, {"lane": 4, "place": 3, "name": "Joe", "time": "6:34.8", "split": "1:38.7"}, {"lane": 6, "place": 4, "name": "Carter Y", "time": "6:35.7", "split": "1:38.9"}, {"lane": 2, "place": 6, "name": "Jack", "time": "6:52.5", "split": "1:43.1"}, {"lane": 5, "place": 6, "name": "Paul", "time": "6:52.5", "split": "1:43.1"}]}]};
 
-// ── COUNTDOWN TO MARCH 7 ───────────────────────────────────────
-// March 7 2026 9:00 AM PST = 17:00 UTC
-const NEXT = new Date(Date.UTC(2026, 2, 7, 17, 0, 0));
+// ── THEME TOGGLE ──────────────────────────────────────────────
+function toggleTheme(){
+  const isLight = document.documentElement.classList.toggle('light');
+  document.getElementById('themeBtn').textContent = isLight ? '🌑' : '🌙';
+  try{ localStorage.setItem('theme', isLight?'light':'dark'); }catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('theme')==='light'){
+      document.documentElement.classList.add('light');
+      document.getElementById('themeBtn').textContent='🌑';
+    }
+  }catch(e){}
+})();
 
+// ── COUNTDOWN & CLOCK ─────────────────────────────────────────
+const NEXT = new Date(Date.UTC(2026, 2, 7, 17, 0, 0)); // Mar 7 9am PST
 function pad(n){return String(n).padStart(2,'0')}
 
 function tickClock(){
   const n=new Date(),h=n.getHours()%12||12,ap=n.getHours()>=12?'PM':'AM';
   document.getElementById('clk').textContent=pad(h)+':'+pad(n.getMinutes())+':'+pad(n.getSeconds())+' '+ap;
 }
-
 function tickCountdown(){
-  const diff = NEXT - new Date();
-  if(diff <= 0){
+  const diff=NEXT-new Date();
+  if(diff<=0){
     document.getElementById('ncd').innerHTML='<div style="font-family:\'DM Mono\',monospace;font-size:13px;color:var(--gold);letter-spacing:2px">TODAY!</div>';
     return;
   }
@@ -255,7 +267,6 @@ function tickCountdown(){
   document.getElementById('ncd-m').textContent=pad(mi);
   document.getElementById('ncd-s').textContent=pad(sc);
 }
-
 setInterval(tickClock,1000); tickClock();
 setInterval(tickCountdown,1000); tickCountdown();
 
@@ -276,79 +287,60 @@ function fmtDate(dt){
 
 // ── HERO STATS ────────────────────────────────────────────────
 function renderHeroStats(){
-  // find overall winners (Grand Final 1st place)
-  const gfB = (D.events||[]).find(e=>e.name==='Grand Final — Boys');
-  const gfG = (D.events||[]).find(e=>e.name==='Grand Final — Girls');
-  const winB = gfB?.participants?.find(p=>p.place===1);
-  const winG = gfG?.participants?.find(p=>p.place===1);
+  const gfB=(D.events||[]).find(e=>e.name==='Grand Final \u2014 Boys');
+  const gfG=(D.events||[]).find(e=>e.name==='Grand Final \u2014 Girls');
+  const winB=gfB?.participants?.find(p=>p.place===1);
+  const winG=gfG?.participants?.find(p=>p.place===1);
   let html='';
-  if(winB) html+=`<div class="hstat"><div class="hstat-n">${winB.name}</div><div class="hstat-l">Grand Final Champion — Boys &nbsp;${winB.time||''}</div></div>`;
-  if(winG) html+=`<div class="hstat"><div class="hstat-n">${winG.name}</div><div class="hstat-l">Grand Final Champion — Girls &nbsp;${winG.time||''}</div></div>`;
+  if(winB) html+=`<div class="hstat"><div class="hstat-n">${winB.name}</div><div class="hstat-l">Grand Final Champion \u2014 Boys &nbsp;${winB.time||''}</div></div>`;
+  if(winG) html+=`<div class="hstat"><div class="hstat-n">${winG.name}</div><div class="hstat-l">Grand Final Champion \u2014 Girls &nbsp;${winG.time||''}</div></div>`;
   document.getElementById('hero-stats').innerHTML=html;
 }
 
 // ── EVENT LIST ────────────────────────────────────────────────
-let openId = null;
-
-// Define display grouping order
-const EVENT_GROUPS = [
-  { label:'Day 1 — Feb 25  ·  A/B Semis', names:[
-    'A/B Semi 1 — Boys','A/B Semi 2 — Boys',
-    'A/B Semi 1 — Girls','A/B Semi 2 — Girls'
-  ]},
-  { label:'Day 2 — Feb 26  ·  C/D Semis', names:[
-    'C/D Semi 1 — Boys','C/D Semi 2 — Boys',
-    'C/D Semi 3 — Girls','C/D Semi 4 — Girls'
-  ]},
-  { label:'Day 2 — Feb 26  ·  Finals', names:[
-    'Grand Final — Boys','Grand Final — Girls',
-    'C Final — Boys','C Final — Girls',
-    'Petite Final — Boys','Petite Final — Girls',
-    'D Final — Boys','D Final — Girls'
-  ]},
+let openId=null;
+const EVENT_GROUPS=[
+  {label:'Day 1 \u2014 Feb 25 \u00b7 A/B Semis',names:['A/B Semi 1 \u2014 Boys','A/B Semi 2 \u2014 Boys','A/B Semi 1 \u2014 Girls','A/B Semi 2 \u2014 Girls']},
+  {label:'Day 2 \u2014 Feb 26 \u00b7 C/D Semis',names:['C/D Semi 1 \u2014 Boys','C/D Semi 2 \u2014 Boys','C/D Semi 3 \u2014 Girls','C/D Semi 4 \u2014 Girls']},
+  {label:'Day 2 \u2014 Feb 26 \u00b7 Finals',names:['Grand Final \u2014 Boys','Grand Final \u2014 Girls','C Final \u2014 Boys','C Final \u2014 Girls','Petite Final \u2014 Boys','Petite Final \u2014 Girls','D Final \u2014 Boys','D Final \u2014 Girls']},
 ];
 
 function renderEvents(){
-  const evMap = {};
-  (D.events||[]).forEach(e => evMap[e.name]=e);
+  const evMap={};
+  (D.events||[]).forEach(e=>evMap[e.name]=e);
   let html='';
-  EVENT_GROUPS.forEach(grp => {
+  EVENT_GROUPS.forEach(grp=>{
     html+=`<div class="grp-lbl">${grp.label}</div>`;
-    grp.names.forEach((ename,i) => {
-      const e = evMap[ename];
-      if(e) html += evCard(e, ename);
-    });
+    grp.names.forEach(ename=>{const e=evMap[ename];if(e)html+=evCard(e,ename);});
   });
-  document.getElementById('evList').innerHTML = html;
+  document.getElementById('evList').innerHTML=html;
 }
 
-function evCard(e, ename){
-  const isGrand = ename.startsWith('Grand Final');
-  const pts = e.participants||[];
-  const hasL = pts.some(p=>p.lane!=null);
-  const gc = hasL?'wl':'nl';
-  // sort by place then time
+function evCard(e,ename){
+  const isGrand=ename.startsWith('Grand Final');
+  const pts=e.participants||[];
+  const hasL=pts.some(p=>p.lane!=null);
+  const gc=hasL?'wl':'nl';
   const sorted=[...pts].filter(p=>p.name).sort((a,b)=>{
-    if(a.place!=null&&b.place!=null) return a.place-b.place;
+    if(a.place!=null&&b.place!=null)return a.place-b.place;
     return parseT(a.time)-parseT(b.time);
   });
-  const rows = sorted.map((p,ri)=>{
-    const pos = p.place||(ri+1);
-    const pc = pos===1?'p1':pos===2?'p2':pos===3?'p3':'pn';
-    const sq = getSq(p.name);
-    const lc = hasL?`<span class="rl">${p.lane!=null?p.lane:'—'}</span>`:'';
-    const tc = (ri===0&&p.time)?'winner-time':'';
-    return `<div class="rrow ${gc}"><div class="rpos ${pc}">${pos}</div>${lc}<div><div class="ran">${p.name}</div><div class="ras">${sq}</div></div><div class="rtm ${tc}">${p.time||'—'}</div><div class="rsp">${p.split?'avg '+p.split:'—'}</div><div class="rrt">${p.rate?p.rate+' s/m':'—'}</div></div>`;
+  const rows=sorted.map((p,ri)=>{
+    const pos=p.place||(ri+1);
+    const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'pn';
+    const sq=getSq(p.name);
+    const lc=hasL?`<span class="rl">${p.lane!=null?p.lane:'\u2014'}</span>`:'';
+    const tc=(ri===0&&p.time)?'winner-time':'';
+    return `<div class="rrow ${gc}"><div class="rpos ${pc}">${pos}</div>${lc}<div><div class="ran">${p.name}</div><div class="ras">${sq}</div></div><div class="rtm ${tc}">${p.time||'\u2014'}</div><div class="rsp">${p.split?'avg '+p.split:'\u2014'}</div></div>`;
   }).join('');
-  const lh = hasL?'<span>Lane</span>':'';
-  const body = pts.length
-    ? `<div class="rth ${gc}"><span>Pos</span>${lh}<span>Athlete</span><span style="text-align:right">Time</span><span style="text-align:right">Avg Split</span><span style="text-align:right">Rate</span></div>${rows}`
-    : `<div class="rem">No result data</div>`;
-  const typeC = (e.type==='final')?'tf':'ts';
-  const typeLabel = cap(e.type);
-  const safeid = 'ev_'+ename.replace(/[^a-z0-9]/gi,'_');
-  const grandC = isGrand?'grand':'';
-  return `<div class="ri ${grandC} fi" id="${safeid}"><div class="rc" onclick="tog('${safeid}')"><span class="bdg ${typeC}">${typeLabel}</span><div class="rci"><h3>${ename}</h3><div class="rcw">${fmtDate(e.datetime)}</div></div><div class="rcr"><div class="rce">${sorted.length?sorted.length+' athletes':''}</div><div class="rch">&#9660;</div></div></div><div class="rp"><div class="rpi"><div class="rpb">${body}</div></div></div></div>`;
+  const lh=hasL?'<span>Lane</span>':'';
+  const body=pts.length
+    ?`<div class="rth ${gc}"><span>Pos</span>${lh}<span>Athlete</span><span style="text-align:right">Time</span><span style="text-align:right">Avg Split</span></div>${rows}`
+    :`<div class="rem">No result data</div>`;
+  const typeC=(e.type==='final')?'tf':'ts';
+  const safeid='ev_'+ename.replace(/[^a-z0-9]/gi,'_');
+  const grandC=isGrand?'grand':'';
+  return `<div class="ri ${grandC} fi" id="${safeid}"><div class="rc" onclick="tog('${safeid}')"><span class="bdg ${typeC}">${cap(e.type)}</span><div class="rci"><h3>${ename}</h3><div class="rcw">${fmtDate(e.datetime)}</div></div><div class="rcr"><div class="rce">${sorted.length?sorted.length+' athletes':''}</div><div class="rch">&#9660;</div></div></div><div class="rp"><div class="rpi"><div class="rpb">${body}</div></div></div></div>`;
 }
 
 function tog(id){
@@ -358,13 +350,11 @@ function tog(id){
   else{el.classList.add('open');openId=id;setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),40);}
 }
 
-// ── LEADERBOARD ───────────────────────────────────────────────
-let grp='vboys';
-const GRP_MAP = {
-  vboys:  a=>a.squad==='V. Boys',
-  nboys:  a=>a.squad==='N. Boys',
-  vgirls: a=>a.squad==='V. Girls',
-  ngirls: a=>a.squad==='N. Girls',
+// ── LEADERBOARD (merged Boys / Girls) ────────────────────────
+let grp='boys';
+const GRP_MAP={
+  boys:  a=>a.squad==='V. Boys'||a.squad==='N. Boys',
+  girls: a=>a.squad==='V. Girls'||a.squad==='N. Girls',
 };
 
 function setG(g){
@@ -381,11 +371,13 @@ function renderLB(){
   if(!s.length){el.innerHTML='<div class="empty">No times recorded</div>';return;}
   el.innerHTML=s.map((a,i)=>{
     const r=i+1,rc=r===1?'r1':r===2?'r2':r===3?'r3':'rn';
-    const best = a.bestTime;
-    const tag = a.finalTime&&a.finalTime===best?' <span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--glt);text-transform:uppercase;letter-spacing:1px">final</span>'
-              : a.semiTime&&a.semiTime===best?' <span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--blt);text-transform:uppercase;letter-spacing:1px">semi</span>'
-              :' <span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">heat</span>';
-    return `<div class="lr fi" style="animation-delay:${i*.03}s"><div class="lrk ${rc}">${r}</div><div><div class="ln">${a.name}</div><div class="lsq">${a.squad}</div></div><div class="lt"><div class="ltm">${best}${tag}</div><span class="lsp">${a.avgSplit?'avg '+a.avgSplit:''}</span></div></div>`;
+    const best=a.bestTime;
+    const roundTag=a.finalTime&&a.finalTime===best
+      ?`<span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--glt);text-transform:uppercase;letter-spacing:1px"> final</span>`
+      :a.semiTime&&a.semiTime===best
+      ?`<span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--blt);text-transform:uppercase;letter-spacing:1px"> semi</span>`
+      :`<span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px"> heat</span>`;
+    return `<div class="lr fi" style="animation-delay:${i*.025}s"><div class="lrk ${rc}">${r}</div><div><div class="ln">${a.name}</div><div class="lsq">${a.squad}</div></div><div class="lt"><div class="ltm">${best}${roundTag}</div><span class="lsp">${a.avgSplit?'avg '+a.avgSplit:''}</span></div></div>`;
   }).join('');
 }
 
